@@ -1,11 +1,12 @@
 package com.njupt.sniper.testdatabinding;
 
-/**
- * Created by liangfeizc on 6/2/15.
- */
-public class User {
-    private final String firstName;
-    private final String lastName;
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+
+public class User extends BaseObservable {
+    private  String firstName;
+    private  String lastName;
     private String displayName;
     private int age;
 
@@ -19,23 +20,43 @@ public class User {
         this.age = age;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
+    @Bindable
     public String getDisplayName() {
         return firstName + " " + lastName;
     }
 
     public boolean isAdult() {
         return age >= 18;
+    }
+
+    @Bindable
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+        notifyPropertyChanged(com.njupt.sniper.testdatabinding.BR.firstName);
+        notifyPropertyChanged(com.njupt.sniper.testdatabinding.BR.displayName);
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
